@@ -523,6 +523,11 @@ static void max17047_polling_work(struct work_struct *work)
 	max17047_get_rawsoc(fg_data->client);
 	max17047_get_soc(fg_data->client);
 
+#ifdef CONFIG_LEDS_AN30259A
+		if (charging_led_an30259a_enable)
+			enable_charging_led(fg_data->soc);
+#endif
+
 	pr_info("%s: VCELL(%d), VFOCV(%d), AVGVCELL(%d), RAWSOC(%d), SOC(%d)\n",
 					__func__, fg_data->vcell,
 					fg_data->vfocv, fg_data->avgvcell,

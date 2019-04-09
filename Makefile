@@ -4,42 +4,12 @@ SUBLEVEL = 67
 EXTRAVERSION =
 NAME = Saber-toothed Squirrel
 
-# *DOCUMENTATION*
-# To see a list of typical targets execute "make help"
-# More info can be located in ./README
-# Comments in this file are targeted only to the developer, do not
-# expect to learn how to build the kernel reading this file.
-
-# Do not:
-# o  use make's built-in rules and variables
-#    (this increases performance and avoids hard-to-debug behaviour);
-# o  print "Entering directory ...";
 MAKEFLAGS += -rR --no-print-directory
 
-# Avoid funny character set dependencies
 unexport LC_ALL
 LC_COLLATE=C
 LC_NUMERIC=C
 export LC_COLLATE LC_NUMERIC
-
-# We are using a recursive build, so we need to do a little thinking
-# to get the ordering right.
-#
-# Most importantly: sub-Makefiles should only ever modify files in
-# their own directory. If in some directory we have a dependency on
-# a file in another dir (which doesn't happen often, but it's often
-# unavoidable when linking the built-in.o targets which finally
-# turn into vmlinux), we will call a sub make in that other dir, and
-# after that we are sure that everything which is in that other dir
-# is now up to date.
-#
-# The only cases where we need to modify files which have global
-# effects are thus separated out and done before the recursive
-# descending is started. They are now explicitly listed as the
-# prepare rule.
-
-# To put more focus on warnings, be less verbose as default
-# Use 'make V=1' to see the full commands
 
 ifeq ("$(origin V)", "command line")
   KBUILD_VERBOSE = $(V)
@@ -48,15 +18,6 @@ ifndef KBUILD_VERBOSE
   KBUILD_VERBOSE = 0
 endif
 
-# Call a source code checker (by default, "sparse") as part of the
-# C compilation.
-#
-# Use 'make C=1' to enable checking of only re-compiled files.
-# Use 'make C=2' to enable checking of *all* source files, regardless
-# of whether they are re-compiled or not.
-#
-# See the file "Documentation/sparse.txt" for more details, including
-# where to get the "sparse" utility.
 
 ifeq ("$(origin C)", "command line")
   KBUILD_CHECKSRC = $(C)
@@ -65,9 +26,6 @@ ifndef KBUILD_CHECKSRC
   KBUILD_CHECKSRC = 0
 endif
 
-# Use make M=dir to specify directory of external module to build
-# Old syntax make ... SUBDIRS=$PWD is still supported
-# Setting the environment variable KBUILD_EXTMOD take precedence
 ifdef SUBDIRS
   KBUILD_EXTMOD ?= $(SUBDIRS)
 endif
@@ -76,28 +34,9 @@ ifeq ("$(origin M)", "command line")
   KBUILD_EXTMOD := $(M)
 endif
 
-# kbuild supports saving output files in a separate directory.
-# To locate output files in a separate directory two syntaxes are supported.
-# In both cases the working directory must be the root of the kernel src.
-# 1) O=
-# Use "make O=dir/to/store/output/files/"
-#
-# 2) Set KBUILD_OUTPUT
-# Set the environment variable KBUILD_OUTPUT to point to the directory
-# where the output files shall be placed.
-# export KBUILD_OUTPUT=dir/to/store/output/files/
-# make
-#
-# The O= assignment takes precedence over the KBUILD_OUTPUT environment
-# variable.
 
-
-# KBUILD_SRC is set on invocation of make in OBJ directory
-# KBUILD_SRC is not intended to be used by the regular user (for now)
 ifeq ($(KBUILD_SRC),)
 
-# OK, Make called in directory where kernel src resides
-# Do we want to locate output files in a separate directory?
 ifeq ("$(origin O)", "command line")
   KBUILD_OUTPUT := $(O)
 endif

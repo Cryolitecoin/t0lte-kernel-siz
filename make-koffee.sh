@@ -1,13 +1,13 @@
 #!/bin/bash
 
-VERSION=0.5
-DEFCONFIG=lineageos_n7100_defconfig
-TOOLCHAIN=/home/siz/smdk3/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
+VERSION=0.0.1
+DEFCONFIG=lineageos_t0lte_defconfig
+TOOLCHAIN=/home/siz/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 KCONFIG=false
 CUST_CONF=no
 DEVICE=UNKNOWN
 KCONF_REPLACE=false
-KERNEL_NAME="siz-kernel-t0lte-3.4-beta"
+KERNEL_NAME="siz-kernel-t0lte-3.4.65-beta"
 KERNEL_VERSION="r1.0"
 SKIP_MODULES=true
 DONTPACK=false
@@ -20,10 +20,11 @@ CLEAN=false
 
 
 usage() {
-	echo "Koffee build script v$VERSION"
+	echo "SiZ t0lte Kernel builder  v$VERSION"
 	echo `date`
-	echo "Written by A\$teroid <acroreiser@gmail.com>"
-	echo ""
+	echo "Modified for t0lte by Cryolite <sisma12345.dt@gmail.com>"
+        echo "Written by A\$teroid <acroreiser@gmail.com>"
+        echo ""
     echo "Usage:"
     echo ""
 	echo "make-koffee.sh [-d/-D/-O <file>] [-K] [-U <user>] [-N <BUILD_NUMBER>] [-k] [-R] -t <toolchain_prefix> -d <defconfig>"
@@ -159,15 +160,17 @@ make_flashable()
 	BUILD_NUMBER=$(cat $BUILD_PATH/.version)
 	# replace variables in anykernel script
 	cd $REPACK_PATH
-	KERNELNAME="Flashing Chrono kernel ${KERNEL_VERSION}"
+	KERNELNAME="Flashing t0lte-siz kernel 3.4.67 ${KERNEL_VERSION}"
 	sed -i "s;###kernelname###;${KERNELNAME};" META-INF/com/google/android/update-binary;
 	COPYRIGHT_SCRIPT=$(echo '(c) A\$teroid × Lord Boeffla, 2018')
 	sed -i "s;###copyright_script###;${COPYRIGHT_SCRIPT};" META-INF/com/google/android/update-binary;
 	COPYRIGHT=$(echo '(c) Chrono, 2019')
 	sed -i "s;###copyright###;${COPYRIGHT};" META-INF/com/google/android/update-binary;
+        COPYRIGHT=$(echo '(c) Cryolite aka Mugensiz XDA, 2019')
+        sed -i "s;###copyright###;${COPYRIGHT};" META-INF/com/google/android/update-binary;
 	BUILDINFO="Build #${BUILD_NUMBER}, $DATE (revision $REVISION)"
 	sed -i "s;###buildinfo###;${BUILDINFO};" META-INF/com/google/android/update-binary;
-	SOURCECODE="Source code: https://github.com/ChronoMonochrome/android_kernel_samsung_smdk4412"
+	SOURCECODE="Source code: https://github.com/Cryolitecoin/t0lte-kernel-siz"
 	sed -i "s;###sourcecode###;${SOURCECODE};" META-INF/com/google/android/update-binary;
 
 
@@ -247,8 +250,8 @@ main() {
 	if [ "$DEFCONFIG" == "lineageos_n7100_defconfig" ]; then
 		DEVICE="t03g"
 	fi
-	
-    if [ "$DEFCONFIG" == "lineageos_t0lte_defconfig" ]; then
+
+        if [ "$DEFCONFIG" == "lineageos_t0lte_defconfig" ]; then
 		DEVICE="t0lte"
 	fi
 

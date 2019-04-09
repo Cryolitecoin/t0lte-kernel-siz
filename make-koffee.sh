@@ -2,7 +2,7 @@
 
 VERSION=0.0.1
 DEFCONFIG=lineageos_t0lte_defconfig
-TOOLCHAIN=/home/siz/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
+TOOLCHAIN=/home/siz/arm-linux-androideabi-7.x/bin/arm-linux-androideabi-
 KCONFIG=false
 CUST_CONF=no
 DEVICE=UNKNOWN

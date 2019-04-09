@@ -1,6 +1,6 @@
 #
 # Automatically generated make config: don't edit
-# Linux/arm 3.0.101 Kernel Configuration
+# Linux/arm 3.4.67 Kernel Configuration
 #
 CONFIG_ARM=y
 CONFIG_HAVE_PWM=y
@@ -104,7 +104,7 @@ CONFIG_BLK_DEV_INITRD=y
 CONFIG_INITRAMFS_SOURCE=""
 CONFIG_RD_GZIP=y
 # CONFIG_RD_BZIP2 is not set
-# CONFIG_RD_LZMA is not set
+CONFIG_RD_LZMA=
 # CONFIG_RD_XZ is not set
 # CONFIG_RD_LZO is not set
 # CONFIG_CC_OPTIMIZE_FOR_SIZE is not set
@@ -555,7 +555,7 @@ CONFIG_BT_MGMT=y
 CONFIG_QC_MODEM=y
 CONFIG_MSM_SUBSYSTEM_RESTART=y
 CONFIG_QC_MODEM_MDM9X15=y
-CONFIG_MDM_HSIC_PM=y
+# CONFIG_MDM_HSIC_PM is not set
 # CONFIG_EMI_ERROR_RECOVERY is not set
 CONFIG_QC_MODEM_M3=y
 CONFIG_USB_CDFS_SUPPORT=y
@@ -696,7 +696,7 @@ CONFIG_ARM_FLUSH_CONSOLE_ON_RESTART=y
 # CONFIG_USE_OF is not set
 CONFIG_ZBOOT_ROM_TEXT=0
 CONFIG_ZBOOT_ROM_BSS=0
-CONFIG_CMDLINE="console=ttySAC2,115200 consoleblank=0 androidboot.hardware=smdk4x12"
+CONFIG_CMDLINE="console=ttySAC2,115200 consoleblank=0 androidboot.hardware=smdk4x12 androidboot.selinux=permissive"
 # CONFIG_CMDLINE_FROM_BOOTLOADER is not set
 CONFIG_CMDLINE_EXTEND=y
 # CONFIG_CMDLINE_FORCE is not set
